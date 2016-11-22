@@ -114,9 +114,9 @@ endif
 # Board: tone
 ifneq ($(filter tone,$(PRODUCT_PLATFORM)),)
 ifneq ($(filter kagura,$(TARGET_DEVICE)),)
-LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_NUM="49"
+LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_NUM="48"
 LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_MAJOR="259"
-LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_MINOR="17"
+LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_MINOR="16"
 fota_num_set := true
 else
 LOCAL_CFLAGS += -DDEV_BLOCK_FOTA_NUM="45"
@@ -130,6 +130,9 @@ endif
 ifneq ($(fota_num_set),true)
 $(error device-sony-common-init: DEV_BLOCK_FOTA_NUM missing for "$(TARGET_DEVICE)", platform "$(PRODUCT_PLATFORM)")
 endif
+
+# Debug current init_sony settings
+$(info device-sony-common-init: init_sony for "$(TARGET_DEVICE)", platform "$(PRODUCT_PLATFORM)", with $(LOCAL_CFLAGS))
 
 # FOTA check is broken on all devices
 LOCAL_CFLAGS += -DFOTA_RAMDISK_CHECK="0"
